@@ -40,4 +40,25 @@ class Blog extends CI_Controller {
             $this->load->view('success',$res);
         }
     }
+
+    public function edit($id=false){
+        
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('title','Title','required');
+        $this->form_validation->set_rules('content','Content','required');
+
+        $data['title']='Edit blog ID: '.$id;
+        $data['blog']=$this->blog_model->get_blogs($id);
+
+            
+        if ($this->form_validation->run() === false) {
+            $this->load->view('edit',$data);
+        } else {
+            $id=$this->input->post('id');
+            $this->blog_model->edit_blog($id);
+            $this->load->view('success');
+        }
+        
+    }
 }

@@ -27,4 +27,13 @@ class Blog_model extends CI_Model {
     public function delete_blog($id){
         return $this->db->delete('blogs',array('id'=>$id));
     }
+
+    public function edit_blog($id){
+        $data=array(
+            'id'=>$id,
+            'title'=>$this->input->post('title'),
+            'content'=>$this->input->post('content')
+        );
+        $this->db->replace('blogs',$data);
+    }
 }
