@@ -1,2 +1,3 @@
 <?php
-echo 'create blog successful';
+echo 'success !!!';
+echo $x;

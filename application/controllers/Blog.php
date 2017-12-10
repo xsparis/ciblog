@@ -30,4 +30,14 @@ class Blog extends CI_Controller {
             $this->load->view('success');
         }
     }
+
+    public function delete($id=false){
+        if ($id === false){
+            $this->load->view('false');
+        } else {
+            $res['x']=$this->blog_model->delete_blog($id);
+            //当id不在blogs表格中，返回了数值1，需要解决
+            $this->load->view('success',$res);
+        }
+    }
 }

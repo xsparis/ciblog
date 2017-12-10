@@ -23,4 +23,8 @@ class Blog_model extends CI_Model {
 
         return $this->db->insert('blogs',$data);
     }
+
+    public function delete_blog($id){
+        return $this->db->delete('blogs',array('id'=>$id));
+    }
 }
