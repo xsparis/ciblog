@@ -11,7 +11,7 @@ class Blog extends CI_Controller {
         $data['blogs']=$this->blog_model->get_blogs();
         $data['title']='All blogs';
 
-        $this->load->view('blogs',$data);
+        $this->load->view('blog/blogs',$data);
     }
 
     public function create(){
@@ -24,20 +24,20 @@ class Blog extends CI_Controller {
         $this->form_validation->set_rules('content','Content','required');
 
         if ($this->form_validation->run() === false) {
-            $this->load->view('create',$data);
+            $this->load->view('blog/create',$data);
         } else {
             $this->blog_model->create_blog();
-            $this->load->view('success');
+            $this->load->view('test/success');
         }
     }
 
     public function delete($id=false){
         if ($id === false){
-            $this->load->view('false');
+            $this->load->view('test/false');
         } else {
             $res['x']=$this->blog_model->delete_blog($id);
             //当id不在blogs表格中，返回了数值1，需要解决
-            $this->load->view('success',$res);
+            $this->load->view('test/success',$res);
         }
     }
 
@@ -53,11 +53,11 @@ class Blog extends CI_Controller {
 
             
         if ($this->form_validation->run() === false) {
-            $this->load->view('edit',$data);
+            $this->load->view('blog/edit',$data);
         } else {
             $id=$this->input->post('id');
             $this->blog_model->edit_blog($id);
-            $this->load->view('success');
+            $this->load->view('test/success');
         }
         
     }
